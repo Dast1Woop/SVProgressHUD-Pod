@@ -77,7 +77,8 @@
 }
 
 - (void)showWithStatus {
-	[SVProgressHUD showWithStatus:@"Doing Stuff"];
+    [SVProgressHUD setImageViewSize:(CGSizeZero)];
+	[SVProgressHUD showInfoWithStatus:@"Doing Stuff"];
     self.activityCount++;
 }
 

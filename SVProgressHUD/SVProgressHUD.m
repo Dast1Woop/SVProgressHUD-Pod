@@ -26,8 +26,8 @@ NSString * const SVProgressHUDStatusUserInfoKey = @"SVProgressHUDStatusUserInfoK
 static const CGFloat SVProgressHUDParallaxDepthPoints = 10.0f;
 static const CGFloat SVProgressHUDUndefinedProgress = -1;
 static const CGFloat SVProgressHUDDefaultAnimationDuration = 0.15f;
-static const CGFloat SVProgressHUDVerticalSpacing = 12.0f;
-static const CGFloat SVProgressHUDHorizontalSpacing = 12.0f;
+static const CGFloat SVProgressHUDVerticalSpacing = 25.0f;
+static const CGFloat SVProgressHUDHorizontalSpacing = 32.0f;
 static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 
@@ -427,7 +427,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         _ringRadius = 18.0f;
         _ringNoTextRadius = 24.0f;
         
-        _cornerRadius = 14.0f;
+        _cornerRadius = 12.0f;
 		
         _graceTimeInterval = 0.0f;
         _minimumDismissTimeInterval = 5.0;
@@ -452,7 +452,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 - (void)updateHUDFrame {
     // Check if an image or progress ring is displayed
-    BOOL imageUsed = (self.imageView.image) && !(self.imageView.hidden);
+    CGSize size = [SVProgressHUD sharedView].imageViewSize;
+    BOOL isImgVSizeZero = (0 == size.width && 0 == size.height);
+    BOOL imageUsed = (self.imageView.image) && !(self.imageView.hidden) && (!isImgVSizeZero);
     BOOL progressUsed = self.imageView.hidden;
     
     // Calculate size of string
