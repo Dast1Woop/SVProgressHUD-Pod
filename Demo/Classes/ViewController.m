@@ -65,6 +65,12 @@
     
     if([notification.name isEqualToString:SVProgressHUDDidReceiveTouchEventNotification]){
         [self dismiss];
+        return;
+    }
+    
+    if([notification.name isEqualToString:SVProgressHUDDidDisappearNotification]){
+        UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+        return;
     }
 }
 
